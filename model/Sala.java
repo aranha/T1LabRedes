@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 
 public class Sala{
-    public List<Acoes> lstAcoes = new ArrayList<>();
+    public String nome;
+    public Sala norte;
+    public Sala sul;
+    public Sala leste;
+    public Sala oeste;
+    public List<Objeto> lstObjetos = new ArrayList<>();
     
     
 }
