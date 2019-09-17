@@ -7,6 +7,7 @@ public class Sala{
     public Sala sul;
     public Sala leste;
     public Sala oeste;
+    public Boolean isLocked = false;
     public List<Objeto> lstObjetos = new ArrayList<>();
     
     

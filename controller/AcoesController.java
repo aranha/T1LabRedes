@@ -5,11 +5,14 @@ import model.Objeto;
 
 public class AcoesController{
 
-    public void examinar(Object obj){
+    public String examinar(Object obj){
+        if(obj instanceof Sala && ((Sala)obj).isLocked){
+            return "Trancado filhão";
+        }
         if(obj instanceof Sala || obj instanceof Objeto){
-            System.out.println(obj.toString());
+            return obj.toString();
         }else{
-            System.out.println("Erro");
+            return "Só podemos examinar objetos e salas";
         }
     }
 
@@ -71,9 +74,18 @@ public class AcoesController{
         return msg;
     }
 
-    // public String usar(Objeto obj){
-
-    // }
+    public String usar(Objeto obj, Sala sala){
+        if(sala.lstObjetos.size() == 0){
+            return "não existe nenhum alvo na sala";
+        }
+        for(int i = 0; i < sala.lstObjetos.size(); i++){
+            if(obj.lstAdjascentes.contains(sala.lstObjetos.get(i))){
+                return obj.toString() + " usado com sucesso";
+            }
+        }
+        return "Seu objeto não pode ser usado na sala";
+       
+    }
 
     public String falar(String msg){
         return msg;
