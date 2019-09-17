@@ -1,9 +1,15 @@
 import model.Sala;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Objeto;
 import model.Usuario;
 import model.Objeto;
 
 public class AcoesController{
+    
+    List<Usuario> lstUser = new ArrayList<>();
 
     public String examinar(Object obj){
         if(obj instanceof Sala && ((Sala)obj).isLocked){
@@ -100,6 +106,21 @@ public class AcoesController{
         }
 
         return msgErro;
+    }
+
+    public String Login(String nick, String IP){
+        for(Usuario user : lstUser) {
+            if(user.nick == nick){
+                return "Nick já existente";
+            }
+        }
+        Usuario userNew = new Usuario();
+        userNew.nick = nick;
+        userNew.IP = IP;
+        lstUser.add(userNew);
+
+        return "Usuario logado com sucesso";
+
     }
 
     public String ajuda(){
